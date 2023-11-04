@@ -4,18 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Express Skills</title>
-    <link rel='stylesheet' href='/public/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <a href="/">Home</a>
+    |
+    <a href="/skills">All Skills</a>
 </head>
 <body>
     <h1>Skills</h1>
+    <h3>Skills as of <%= time %></h3>
     <ul>
       <% skills.forEach(function(s) { %>
         <li>
+            <form action="/skills/<%= s.id %>?_method=DELETE"
+                class="delete-form" method="POST">
+                <button type="submit">X</button>
+              </form>
             <a href="/skills/<%= s.id %>"><%= s.skill %></a>
             - 
           <%= s.done ? 'done' : 'not done' %>
         </li>
       <% }); %>
     </ul>
+    <a href="/skills/new">Add Skill</a>
   </body>
 </html>
